@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Proyecto1;
+package Proyecto2;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Seeder {
 
-    public static void initialize(CRUD library) {
+    public static void initialize(CRUD library) throws ParseException {
       
         Profile authorProfile1 = new Profile("Pedro", "Paramo", new Date());
         Profile authorProfile2 = new Profile("Juan", "Alfonso", new Date());
@@ -46,7 +48,45 @@ public class Seeder {
         Book book9 = new Book("3339", "Kafka on the Shore", author9, new Date(), true);
         Book book10 = new Book("4440", "War and Peace", author10, new Date(), true);
 
+  
+        Profile clientProfile = new Profile("Juan", "Hernandez", new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2000"));
+        Client client = new Client(clientProfile, "juan", "1234", new ArrayList<>());
+    
+        
+        Profile clientProfile2 = new Profile("Jesus", "Jose", new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2000"));
+        Client client2 = new Client(clientProfile2, "Pedro", "4321", new ArrayList<>());
+    
        
+        
+        
+        
+          Profile adminProfile = new Profile("Nombre", "Apellido", new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2000"));
+    
+        ArrayList<Permissions> adminPermissions = new ArrayList<>();
+        adminPermissions.add(Permissions.READ);
+        adminPermissions.add(Permissions.WRITE);
+        adminPermissions.add(Permissions.DELETE);
+   
+        Administrator admin = new Administrator(adminPermissions, true, adminProfile, "admin", "peru");
+
+     
+       
+
+        
+    Profile newAdminProfile = new Profile("Juan", "Perez", new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2000"));
+
+
+    ArrayList<Permissions> newAdminPermissions = new ArrayList<>();
+    newAdminPermissions.add(Permissions.READ);
+    newAdminPermissions.add(Permissions.WRITE);
+    adminPermissions.add(Permissions.DELETE);
+
+Administrator newAdmin = new Administrator(newAdminPermissions, false, newAdminProfile, "admin2", "panama");
+
+ library.createClients(client);
+ library.createClients(client2);
+library.createAdministrator(newAdmin);
+library.createAdministrator(admin);        
         library.createAuthor(author1);
         library.createAuthor(author2);
         library.createAuthor(author3);
@@ -72,6 +112,13 @@ public class Seeder {
      
         System.out.println("Datos iniciales creados correctamente.");
     }
+    
+    
+    
+    
+    
+    
+    
 }
 
 

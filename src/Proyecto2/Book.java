@@ -1,5 +1,5 @@
 
-package Proyecto1;
+package Proyecto2;
 
 import java.util.Date;
 class Book {
